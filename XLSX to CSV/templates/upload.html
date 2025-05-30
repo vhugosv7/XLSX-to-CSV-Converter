@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css') }}">
+    <link href="{{url_for('static', filename='favicon.png') }}" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <title>Upload new File</title>
+</head>
+<body>
+    <h1>XLSX to CSV Converter</h1>
+    <form method="post" enctype="multipart/form-data">
+      
+      <div class="upload-container">
+        <label for="file" class="browse">Select files <strong>here </strong><input type="file" name="file" id="file" class="file-attach"  ></label>
+        
+        {% if df %}
+        <p class="filename">File name: {{filename}}</p>
+        {% endif %}
+
+      </div>
+      <button type="submit" value="Upload" class="button-3">
+        <img src="{{url_for('static', filename='white-icon.png') }}" alt="" srcset="" width="20px">
+        Upload file
+      </button>
+      <!--If there is information, then the details will be displayed-->
+      {% if df %}
+      <h4>File information</h4>
+      <table class="table-data">
+
+      <tr class="headers">
+        <td >Columns: </td>
+        <td>Total number of elements:</td>
+        <td>Is this file empty?:</td>
+      </tr>
+      <tr>
+        <td class="columns-names">{{df[0]}}</td>
+        <td>{{df[1]}}</td>
+        <td>{{df[2]}}</td>
+      </tr>
+        
+    </table>
+    </form>
+        {% if df %}
+        <a id="reloadBtn" href="{{ url_for('static', filename='out_csv.csv') }}" class="button-3 btn-csv" download>
+          <img src="{{url_for('static', filename='csv.png') }}" alt="" srcset="" width="20px" >
+        Download csv</a>
+        
+        {% endif %}
+        {% endif %}
+
+        <script>
+          document.getElementById("reloadBtn").addEventListener("click", function() {
+            console.log("Button clicked. Page will reload in 3 seconds...");
+            setTimeout(function() {
+              // Refresh the page , this will erase the previous file generated.
+            location.replace(location.href);
+            }, 3000); // 3000 milliseconds = 3 seconds
+          });
+        </script>
+        
+</body>
+</html>
