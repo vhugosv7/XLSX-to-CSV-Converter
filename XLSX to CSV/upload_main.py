@@ -69,7 +69,7 @@ def get_name(filename):
 def to_csv(filename):
     # Reading the excel file.
     df = pd.read_excel(filename)
-    # Sttoring the df as csv file.
+    # Storing the df as csv file in the static folder (Could be changed).
     csv_file = df.to_csv('static/out_csv.csv', index=False)
     # Test line (Could be omitted).
     print("inside csv function")
