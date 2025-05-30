@@ -104,6 +104,16 @@ and the button to download CSV file.*/
   margin: auto;
 }
 
+/* Small screen: */
+@media (max-width: 500px) {
+  .upload-container {
+    width: 90%;
+    border-width: 2px;
+    padding: 15px;
+  
+  }
+}
+
 
 .error-msg{
   text-align: center;
