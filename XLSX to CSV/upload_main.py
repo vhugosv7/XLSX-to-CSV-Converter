@@ -3,6 +3,7 @@ from flask import Flask, request, redirect, render_template, url_for
 import pandas as pd
 from werkzeug.utils import secure_filename
 
+
 def crear_app():
     UPLOAD_FOLDER = 'your_path/XLSX to CSV'
     
@@ -83,7 +84,7 @@ def crear_app():
         return render_template('error.html')
 
     return app
-    
-    if __name__ == '__main__':
-        app=crear_app()
-        app.run()
+
+if __name__ == '__main__':
+    app = crear_app()
+    app.run()
