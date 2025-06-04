@@ -3,7 +3,7 @@ from flask import Flask, request, redirect, render_template, url_for
 import pandas as pd
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/Users/mxuser1/Desktop/Dev/XLSX to CSV'
+UPLOAD_FOLDER = '/path_here/XLSX to CSV'
 
 ALLOWED_EXTENSIONS = {'xls', 'xlsx'}
 
