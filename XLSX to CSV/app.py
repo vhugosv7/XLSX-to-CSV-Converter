@@ -3,7 +3,7 @@ from flask import Flask, request, redirect, render_template, url_for
 import pandas as pd
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'XLSX to CSV/templates'
+UPLOAD_FOLDER = 'save_user_xlsx'
 
 ALLOWED_EXTENSIONS = {'xls', 'xlsx'}
 
@@ -54,7 +54,7 @@ def get_name(filename):
     headers = []
     if filename:
         print(f" The uploaded file is: {filename}")
-        df = pd.read_excel(filename)
+        df = pd.read_excel(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         for item in df.axes[1]:
             headers.append(item)
@@ -67,8 +67,10 @@ def get_name(filename):
 
 
 def to_csv(filename):
+    print("si")
     # Reading the excel file.
-    df = pd.read_excel(filename)
+    df = pd.read_excel(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    print(df.to_string())
     # Storing the df as csv file in the static folder (Could be changed).
     csv_file = df.to_csv('static/out_csv.csv', index=False)
     # Test line (Could be omitted).
@@ -83,4 +85,4 @@ def error():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',debug=True)
+    app.run('0.0.0.0', debug=True)
